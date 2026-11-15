@@ -6,12 +6,12 @@ This project extends the [ULM Threshold Analysis](https://github.com/IMPACT-L/UL
 
 The original repository evaluates how false positives and false negatives affect reconstructed images by introducing simulated detection errors into ground-truth microbubble positions.
 
-Our proposed extension introduces an *actual frame-based detection pipeline*, comparing two approaches:
+Our proposed extension introduces a *frame-based detection method*, comparing two approaches:
 
 - **Global Thresholding:** A single detection threshold applied uniformly across each ultrasound frame.
 - **Region-Adaptive Thresholding:** A spatially varying threshold based on local microbubble density, estimated using *Kernel Density Estimation (KDE)*.
 
-The resulting detections will be evaluated using the original repository's image quality metrics, including **SSIM, Dice coefficient, and PSNR**, with particular attention to performance in dense and sparse regions.
+The project will be implemented entirely in **MATLAB**, with the intention of introducing minimal modifications to the original repository and reusing its existing image reconstruction and evaluation code.
 
 > **Project Status:** Planning / Initial Development
 >
@@ -50,18 +50,18 @@ Its existing functionality includes:
   - Peak Signal-to-Noise Ratio (**PSNR**)
 - Comparing image quality in **dense and sparse regions**.
 
-<u>**Limitation:**</u> The baseline evaluation simulates detection errors using ground-truth microbubble positions rather than detecting microbubbles directly from ultrasound frames.
+**Limitation:** The baseline evaluation simulates detection errors using ground-truth microbubble positions rather than detecting microbubbles directly from ultrasound frames.
 
 ### Our Approach
 
-We propose implementing a frame-based microbubble detector and investigating whether **region-adaptive thresholding** improves detection and reconstruction performance compared with a global threshold.
+We propose implementing a MATLAB-based microbubble detector and investigating whether **region-adaptive thresholding** improves detection and reconstruction performance compared with a global threshold.
 
 | Component | Global Baseline | Proposed Approach |
 |---|---|---|
 | Detection input | Ultrasound frames | Ultrasound frames |
 | Detection threshold | Fixed global threshold | Spatially adaptive threshold |
 | Density estimation | Not required | Kernel Density Estimation (KDE) |
-| Evaluation | Detection errors and image quality | Detection errors and image quality |
+| Evaluation | Existing MATLAB evaluation code | Existing MATLAB evaluation code |
 
 *Our primary objective is to evaluate the effectiveness of spatially adaptive detection, particularly in regions with different microbubble densities.*
 
@@ -69,27 +69,19 @@ We propose implementing a frame-based microbubble detector and investigating whe
 
 ## Proposed Modifications
 
-Our proposed implementation consists of four main stages.
+We aim to minimize changes to the original repository by implementing the detection algorithms in **one or two additional MATLAB files**, while reusing the existing reconstruction and evaluation framework.
 
-### 1. Frame-Based Microbubble Detection
+### 1. Global Thresholding Baseline
 
-Implement a detector capable of identifying microbubble locations directly from ultrasound simulation frames.
+Implement a frame-based detector that identifies microbubble locations directly from ultrasound simulation data using a **single global detection threshold**.
 
-Unlike the original repository's simulated detection errors, this approach will generate predictions from the input data.
-
-**Implementation details:** *To be added.*
-
-### 2. Global Thresholding Baseline
-
-Develop a detector using a **single global threshold** across each ultrasound frame.
-
-This will provide a consistent baseline against which to evaluate the region-adaptive approach.
+This will provide a reference against which to evaluate the region-adaptive approach.
 
 **Implementation details:** *To be added.*
 
-### 3. Region-Adaptive Thresholding
+### 2. Region-Adaptive Thresholding
 
-Implement a two-pass detection approach:
+Implement a two-pass detection method:
 
 1. Perform an initial microbubble detection pass.
 2. Estimate local microbubble density using **Kernel Density Estimation (KDE)**.
@@ -100,9 +92,9 @@ Implement a two-pass detection approach:
 
 *The relationship between estimated density and the detection threshold will be defined and evaluated during development.*
 
-### 4. Experimental Evaluation
+### 3. Experimental Evaluation
 
-Use the original repository's evaluation framework to compare the global and region-adaptive detectors.
+Reuse the original repository's MATLAB evaluation code to compare the global and region-adaptive detectors.
 
 The comparison will investigate:
 
@@ -131,13 +123,18 @@ The dataset must be downloaded separately and organized according to the scripts
 
 ## Installation and Dependencies
 
-*Installation instructions will be updated once the implementation is established.*
+This project is developed entirely in **MATLAB** and builds on the existing code provided by the original repository.
+
+### Requirements
+
+- MATLAB (version to be confirmed).
+- Any MATLAB toolboxes required by the original code or new detection algorithms.
+- UltraSR simulation dataset.
 
 **TODO:**
-- [ ] Specify the required Python version.
-- [ ] List and document dependencies.
-- [ ] Provide installation instructions.
-- [ ] Document the environment required to execute the experiments.
+- [ ] Confirm the required MATLAB version.
+- [ ] Identify any required MATLAB toolboxes.
+- [ ] Document any additional setup requirements.
 
 ---
 
@@ -145,14 +142,14 @@ The dataset must be downloaded separately and organized according to the scripts
 
 The planned experimental workflow is outlined below.
 
-1. **Data Preparation:** Download and preprocess the ultrasound simulation data.
-2. **Global Detection:** Detect microbubble locations using a global threshold.
-3. **Density Estimation:** Generate a local density map using KDE on the initial detections.
-4. **Adaptive Detection:** Apply spatially varying detection thresholds.
-5. **Image Reconstruction:** Generate super-resolution density maps from both detection outputs.
-6. **Evaluation:** Compare detection accuracy and reconstructed image quality.
+1. **Data Preparation:** Download and prepare the ultrasound simulation dataset.
+2. **Global Detection:** Run the MATLAB detector using a global threshold.
+3. **Density Estimation:** Estimate local microbubble density using KDE.
+4. **Adaptive Detection:** Apply the region-adaptive thresholding method.
+5. **Image Reconstruction:** Use the original MATLAB code to generate super-resolution density maps.
+6. **Evaluation:** Use the existing evaluation scripts to compare detection accuracy and reconstructed image quality.
 
-**TODO:** Add executable commands, parameter configurations, and step-by-step reproduction instructions once implemented.
+**TODO:** Add the MATLAB script names, required parameters, and execution instructions once implemented.
 
 ---
 
@@ -188,16 +185,18 @@ This section will discuss observed improvements, limitations, trade-offs, and po
 
 ## Google Colab Notebook
 
-A **Google Colab notebook** will accompany the repository to demonstrate the implementation and experimental evaluation.
+A **Google Colab notebook** will accompany the repository as part of the project submission.
 
 **Notebook:** *Link to be added.*
 
-The notebook will contain the following sections:
+The project implementation and experiments will be performed in MATLAB. The notebook's role in presenting or reproducing these results will be established in accordance with the submission requirements.
+
+The notebook is expected to include:
 
 | Section | Description |
 |---|---|
 | **Abstract** | Summary of the project, proposed modifications, and main findings. |
-| **Proposed Modifications** | Explanation and justification of the detection algorithms. |
+| **Proposed Modifications** | Explanation and justification of the MATLAB detection algorithms. |
 | **Experimental Results** | Quantitative comparisons and visualizations. |
 | **Discussion** | Interpretation of findings, limitations, and possible improvements. |
 
