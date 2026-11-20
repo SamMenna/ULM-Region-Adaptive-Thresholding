@@ -1,0 +1,13 @@
+{
+  "procedure_info": "",
+  "procedure_type": "",
+  "slice_position": "striatum",
+  "temperature": "",
+  "anesthesia": "1.5-2% isoflurane",
+  "mb_dilution": "1:50",
+  "injection_type": "Bolus in the tail vein",
+  "volume_mb_injected": "4 uL/g",
+  "syringe_gauge": "",
+  "flush": "No",
+  "doi_citations": ""
+}

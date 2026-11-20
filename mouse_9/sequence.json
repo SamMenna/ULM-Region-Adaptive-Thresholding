@@ -1,0 +1,24 @@
+{
+  "transducer": "L22-14v",
+  "startDepth_wavelengths": "20",
+  "endDepth_wavelengths": "90",
+  "frequency_MHz": "15.625",
+  "npulse": "6",
+  "frameRate_Hz": "1000",
+  "angles_deg": "-5, 5, -4, 4, -3, 3, -2, 2, -1, 1, 0",
+  "nbAngles": "11",
+  "voltage": "25",
+  "sampling": "BS100BW",
+  "tgc": "600, 600, 600, 600, 600, 600, 600, 600",
+  "apodizationTX": {
+    "type": "unknown",
+    "alpha": "",
+    "elements": "128"
+  },
+  "acquisition": {
+    "nbFrames": "4",
+    "nbjump": "100",
+    "nbAcq": "400"
+  },
+  "speedOfSound": "1540"
+}
